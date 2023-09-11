@@ -12,6 +12,9 @@ import { RegisterComponent } from './users/register/register.component';
 import { ProfileComponent } from './users/profile/profile.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { HeaderComponent } from './layouts/header/header.component';
+import { BookRoomComponent } from './bookings/book-room/book-room.component';
+import { BookMealComponent } from './bookings/book-meal/book-meal.component';
+import { MyBookingsComponent } from './bookings/my-bookings/my-bookings.component';
 
 
 @NgModule({
@@ -22,7 +25,10 @@ import { HeaderComponent } from './layouts/header/header.component';
     RegisterComponent,
     ProfileComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    BookRoomComponent,
+    BookMealComponent,
+    MyBookingsComponent
   ],
   imports: [
     BrowserModule,
