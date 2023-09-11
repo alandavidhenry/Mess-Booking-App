@@ -6,21 +6,42 @@
         <div class="mb-3">
           <label for="serviceNumber" class="form-label">Service number</label>
           <div class="col-md-2">
-            <input type="text" class="form-control" id="serviceNumber" name="booking[serviceNumber]" placeholder="30123456" required>
+            <input 
+              type="text" 
+              class="form-control" 
+              id="serviceNumber" 
+              name="booking[serviceNumber]" 
+              placeholder="30123456" 
+              required 
+              [(ngModel)]="bookRoom.serviceNumber">
           </div>
         </div>
         <div class="row mb-3">
           <div class="col-sm-5">
             <label for="firstName" class="form-label">First name</label>
-            <input type="text" class="form-control" id="firstName" name="booking[firstName]" placeholder="First name" required>
+            <input 
+              type="text" 
+              class="form-control" 
+              id="firstName" 
+              name="booking[firstName]" 
+              placeholder="First name" 
+              required
+              [(ngModel)]="bookRoom.firstName">
           </div>
           <div class="col-sm-5">
             <label for="lastName" class="form-label">Last name</label>
-            <input type="text" class="form-control" id="lastName" name="booking[lastName]" placeholder="Last name" required>
+            <input 
+              type="text" 
+              class="form-control" 
+              id="lastName" 
+              name="booking[lastName]" 
+              placeholder="Last name" 
+              required
+              [(ngModel)]="bookRoom.lastName">
           </div>
         </div>
       </div>
     </div>
   </div>
-  <button class="btn btn-primary col-sm-3 mb-5">Book</button>
+  <button class="btn btn-primary col-sm-3 mb-5" (click)="saveBooking()">Book</button>
 </form>
