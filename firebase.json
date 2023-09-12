@@ -2,12 +2,19 @@
   "database": {
     "rules": "database.rules.json"
   },
-  "hosting": {
-    "public": "public",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ]
-  }
+  "hosting": [
+    {
+      "public": "public",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ]
+    },
+    {
+      "target": "mess-booking-app",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
 }

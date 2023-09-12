@@ -4,6 +4,19 @@
       <h1>Profile</h1>
       <p>Username: </p>
       <p>Password: </p>
+
+      <ul>
+        <li class="text" *ngFor="let user of users">
+          {{ user.email }}
+          {{ user.password }}
+          <button (click)="deleteUsers(user.id)">Delete User</button>
+        </li>
+      </ul>
+
+      <input type="text" placeholder="email" #email>
+      <input type="text" placeholder="password" #password>
+      <button (click)="addUsers(email.value, password.value)">Add User</button>
+      
     </div>
   </div>
 </div>

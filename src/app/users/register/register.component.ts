@@ -16,10 +16,10 @@ export class RegisterComponent {
               private userService: UserService) {}
   
   saveUser(): void {
-    this.userService.create(this.user).then(() => {
-      console.log('Created new user successfully!');
-      this.router.navigate(['/users', 'sign-in']);
-    });
+    // this.userService.create(this.user).then(() => {
+    //   console.log('Created new user successfully!');
+    //   this.router.navigate(['/users', 'sign-in']);
+    // });
   }
 
 }

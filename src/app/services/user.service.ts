@@ -1,37 +1,28 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
-import { User } from '../models/user.model';
+import { Firestore, collectionData  } from '@angular/fire/firestore';
+import { collection, doc, addDoc, deleteDoc } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private dbPath = '/user';
+  constructor(private fs: Firestore) { }
 
-  usersRef: AngularFireList<User>;
-
-  constructor(private db: AngularFireDatabase) {
-    this.usersRef = db.list(this.dbPath);
+  getUsers() {
+    const usersCollection = collection(this.fs, 'users');
+    return collectionData(usersCollection, { idField: 'id' });
   }
 
-  getAll(): AngularFireList<User> {
-    return this.usersRef;
+  addUser(email: string, password: string) {
+    const data = { email: email, password: password };
+    const usersCollection = collection(this.fs, 'users');
+    return addDoc(usersCollection, data);
   }
 
-  create(user: User): any {
-    return this.usersRef.push(user);
+  deleteUser(id: string) {
+    const decRef = doc(this.fs, 'users/'+id);
+    return deleteDoc(decRef);
   }
-
-  update(key: string, value: any): Promise<void> {
-    return this.usersRef.update(key, value);
-  }
-
-  delete(key: string): Promise<void> {
-    return this.usersRef.remove(key);
-  }
-
-  deleteAll(): Promise<void> {
-    return this.usersRef.remove();
-  }
+  
 }

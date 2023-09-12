@@ -8,5 +8,5 @@ export const environment = {
     authDomain: 'mess-booking-app.firebaseapp.com',
     messagingSenderId: '85994251509',
   },
-  production: true
+  production: false
 };

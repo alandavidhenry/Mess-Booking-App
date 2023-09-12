@@ -1,5 +1,5 @@
 <p>Please fill in the form below to book a room:</p>
-<form>
+<form #f="ngForm" (ngSubmit)="addBooking(f)">
   <div class="card mb-4">
     <div class="card-body">
       <div id="collapsePOCDetails">
@@ -10,7 +10,7 @@
               type="text" 
               class="form-control" 
               id="serviceNumber" 
-              name="booking[serviceNumber]" 
+              name="serviceNumber" 
               placeholder="30123456" 
               required 
               [(ngModel)]="bookRoom.serviceNumber">
@@ -23,7 +23,7 @@
               type="text" 
               class="form-control" 
               id="firstName" 
-              name="booking[firstName]" 
+              name="firstName" 
               placeholder="First name" 
               required
               [(ngModel)]="bookRoom.firstName">
@@ -34,7 +34,7 @@
               type="text" 
               class="form-control" 
               id="lastName" 
-              name="booking[lastName]" 
+              name="lastName" 
               placeholder="Last name" 
               required
               [(ngModel)]="bookRoom.lastName">
@@ -43,5 +43,13 @@
       </div>
     </div>
   </div>
-  <button class="btn btn-primary col-sm-3 mb-5" (click)="saveBooking()">Book</button>
+  <button class="btn btn-primary col-sm-3 mb-5" type="submit">Book</button>
 </form>
+
+<ul>
+  <li *ngFor="let data of roomData | async">
+    {{ data.serviceNumber }} / {{ data.firstName }} / {{ data.lastName }}
+    <button (click)="updateBooking(data.id)">Edit</button>
+    <button (click)="deleteBooking(data.id)">Delete</button>
+  </li>
+</ul>

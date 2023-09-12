@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BookMeal } from 'src/app/models/book-meal.model';
-import { BookMealService } from 'src/app/services/book-meal.service';
+import { FsDataService } from 'src/app/services/fs-data.service';
 
 @Component({
   selector: 'app-book-meal',
@@ -13,12 +13,9 @@ export class BookMealComponent {
   bookMeal: BookMeal = new BookMeal();
 
   constructor(private router: Router,
-              private bookMealService: BookMealService) {}
+              private fsDataService: FsDataService) {}
   
   saveBooking(): void {
-    this.bookMealService.create(this.bookMeal).then(() => {
-      console.log('Created new meal booking successfully!');
-      this.router.navigate(['/bookings', 'my-bookings']);
-    });
+    
   }
 }

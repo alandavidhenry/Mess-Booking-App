@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BookMealService } from './book-meal.service';
+import { FsDataService } from './fs-data.service';
 
-describe('BookMealService', () => {
-  let service: BookMealService;
+describe('FsDataService', () => {
+  let service: FsDataService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(BookMealService);
+    service = TestBed.inject(FsDataService);
   });
 
   it('should be created', () => {
