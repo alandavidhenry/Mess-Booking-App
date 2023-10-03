@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -19,6 +19,7 @@ import { MyBookingsComponent } from './bookings/my-bookings/my-bookings.componen
 import { SignInComponent } from './users/sign-in/sign-in.component';
 import { RegisterComponent } from './users/register/register.component';
 import { ProfileComponent } from './users/profile/profile.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -36,9 +37,10 @@ import { ProfileComponent } from './users/profile/profile.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
+    ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
