@@ -1,41 +1,85 @@
+<h1>Book a meal</h1>
 <p>Please fill in the form below to book a meal:</p>
-<form>
+<form
+  class="container-fluid mt-5"
+  novalidate
+  (ngSubmit)="addBooking(mealBookingForm)"
+  [formGroup]="mealBookingForm"
+  >
+
   <div class="card mb-4">
     <div class="card-body">
-      <div id="collapsePOCDetails">
-        <div class="mb-3">
-          <label for="serviceNumber" class="form-label">Service number</label>
-          <div class="col-md-2">
-            <input 
-              type="text" 
-              class="form-control" 
-              id="serviceNumber" 
-              placeholder="30123456" 
-              required >
-          </div>
-        </div>
-        <div class="row mb-3">
-          <div class="col-sm-5">
-            <label for="firstName" class="form-label">First name</label>
-            <input 
-              type="text" 
-              class="form-control" 
-              id="firstName" 
-              placeholder="First name" 
-              required>
-          </div>
-          <div class="col-sm-5">
-            <label for="lastName" class="form-label">Last name</label>
-            <input 
-              type="text" 
-              class="form-control" 
-              id="lastName" 
-              placeholder="Last name" 
-              required>
-          </div>
+
+      <div class="col-sm-6 mb-3">
+        <label class="form-label" for="mealDate">Meal date</label>
+        <input
+          type="text"
+          class="form-control"
+          id="mealDate"
+          placeholder="DD/MM/YYYY (required)"
+          formControlName="mealDate"
+          [ngClass]="{'is-invalid': mealBookingForm.get('mealDate')?.touched && !mealBookingForm.get('mealDate')?.valid}"
+        >
+        <div class="invalid-feedback">
+          Please enter a valid meal date in the format DD/MM/YYYY.
         </div>
       </div>
+
+      <p>Choose at least one meal:</p>
+
+      <div class="form-check">
+        <input class="form-check-input"
+                type="checkbox"
+                value="Breakfast"
+                id="breakfast"
+                formControlName="mealType"
+        >
+        <label class="form-check-label" for="breakfast">
+          Breakfast
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input"
+                type="checkbox"
+                value="Lunch"
+                id="lunch"
+                formControlName="mealType"
+        >
+        <label class="form-check-label" for="lunch">
+          Lunch
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input"
+                type="checkbox"
+                value="Dinner"
+                id="dinner"
+                formControlName="mealType"
+        >
+        <label class="form-check-label" for="dinner">
+          Dinner
+        </label>
+      </div>
+
+      <div class="mt-3 mb-2">
+        <label for="dietaryRequirements" class="form-label">Dietary requirements</label>
+        <input
+          type="text"
+          class="form-control"
+          id="dietaryRequirements"
+          placeholder="Dietary requirements"
+          formControlName="dietaryRequirements"
+        >
+      </div>
+    
     </div>
   </div>
-  <button class="btn btn-primary col-sm-3 mb-5" (click)="saveBooking()">Book</button>
+
+  <!-- Submit button -->
+  <button
+    type="submit"
+    class="btn btn-primary col-sm-3 mb-5"
+    [disabled]="!mealBookingForm.valid">Book
+  </button>
+
 </form>

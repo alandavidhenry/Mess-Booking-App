@@ -10,8 +10,8 @@ export class BookRoom {
   departureTime?: string;
   bedding: string = 'Yes';
   bringingGuests: string = 'No';
-  firstGuestTitle?: string;
-  firstGuestName?: string;
+  guestTitle?: string;
+  guestName?: string;
   roomType: string = 'Single Bunk';
   POCDetails?: string = 'Same';
   POCServiceNumber?: string;

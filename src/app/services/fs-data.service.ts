@@ -19,13 +19,13 @@ export class FsDataService {
     })
   }
 
-  getData(roomData: any, db: string) {
+  getData(data: any, db: string) {
     const collectionInstance = collection(this.fs, db);
     collectionData(collectionInstance, { idField: 'id' })
     .subscribe(val => {
       console.log(val);
     })
-    roomData = collectionData(collectionInstance, { idField: 'id' });
+    data = collectionData(collectionInstance, { idField: 'id' });
   }
 
   updateData(id: string, db: string) {

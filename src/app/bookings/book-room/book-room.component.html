@@ -1,3 +1,4 @@
+<h1>Book a room</h1>
 <p>Please fill in the form below to book a room:</p>
 <form
   class="container-fluid mt-5"
@@ -15,6 +16,7 @@
           <input
             type="text"
             class="form-control"
+            id="reasonForStay"
             placeholder="Reason for stay (required)"
             formControlName="reasonForStay"
             [ngClass]="{'is-invalid': (roomBookingForm.get('reasonForStay')?.touched || roomBookingForm.get('reasonForStay')?.dirty) && !roomBookingForm.get('reasonForStay')?.valid}"
@@ -30,6 +32,7 @@
             <input
               type="text"
               class="form-control"
+              id="arrivalDate"
               placeholder="DD/MM/YYYY (required)"
               formControlName="arrivalDate"
               [ngClass]="{'is-invalid': roomBookingForm.get('arrivalDate')?.touched && !roomBookingForm.get('arrivalDate')?.valid}"
@@ -43,6 +46,7 @@
             <input 
               type="text"
               class="form-control"
+              id="arrivalTime"
               placeholder="00:00 (required)"
               formControlName="arrivalTime"
               [ngClass]="{'is-invalid': roomBookingForm.get('arrivalTime')?.touched && !roomBookingForm.get('arrivalTime')?.valid}"
@@ -58,6 +62,7 @@
             <input
               type="text"
               class="form-control"
+              id="departureDate"
               placeholder="DD/MM/YYYY (required)"
               formControlName="departureDate"
               [ngClass]="{'is-invalid': roomBookingForm.get('departureDate')?.touched && !roomBookingForm.get('departureDate')?.valid}"
@@ -71,6 +76,7 @@
             <input 
               type="text"
               class="form-control"
+              id="departureTime"
               placeholder="00:00 (required)"
               formControlName="departureTime"
               [ngClass]="{'is-invalid': roomBookingForm.get('departureTime')?.touched && !roomBookingForm.get('departureTime')?.valid}"
@@ -86,6 +92,7 @@
             <input
               type="radio"
               class="form-check-input"
+              id="beddingRequiredYes"
               [value]="'Yes'"
               formControlName="beddingRequired"
               checked
@@ -98,6 +105,7 @@
             <input
               type="radio"
               class="form-check-input"
+              id="beddingRequiredNo"
               [value]="'No'"
               formControlName="beddingRequired"
             >
@@ -144,34 +152,6 @@
         </div>
         <!-- Hidden if no guests selected -->
         <div class="guests" *ngIf="roomBookingForm.get('bringingGuests')?.value === 'Yes'">
-          <div class="row mb-3">
-            <div class="col-sm-3">
-              <label for="firstGuestTitle" class="form-label">Guest title</label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Title"
-                formControlName="firstGuestTitle"
-                [ngClass]="{'is-invalid': roomBookingForm.get('firstGuestTitle')?.touched && !roomBookingForm.get('firstGuestTitle')?.valid}"
-              >
-            </div>
-            <div class="invalid-feedback">
-              <span *ngIf="roomBookingForm.get('firstGuestTitle')?.errors?.['required']">Please enter a guest title.</span>
-            </div>
-            <div class="col-sm-9">
-              <label for="firstGuestName" class="form-label">Guest name</label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Name"
-                formControlName="firstGuestName"
-                [ngClass]="{'is-invalid': roomBookingForm.get('firstGuestName')?.touched && !roomBookingForm.get('firstGuestName')?.valid}"
-              >
-            </div>
-            <div class="invalid-feedback">
-              Please enter a valid guest name.
-            </div>
-          </div>
           <div class="alert alert-warning alert-dismissible fade show" role="alert">
             Members are reminded that they must host their guest at all times and there is a £10.00 cleaning and maintenance bill per stay.
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
@@ -182,6 +162,7 @@
               <input
                 type="radio"
                 class="form-check-input"
+                id="singleBunk"
                 [value]="'Single Bunk'"
                 formControlName="roomType"
                 checked
@@ -194,6 +175,7 @@
               <input
                 type="radio"
                 class="form-check-input"
+                id="familyRoom"
                 [value]="'Family Room'"
                 formControlName="roomType"
               >
@@ -202,6 +184,41 @@
               </label>
             </div>
           </div>
+          <div formArrayName="guests" *ngFor="let guest of guests.controls; let i=index">
+            <div class="row mb-3" [formGroupName]="i">
+              <div class="col-sm-3">
+                <label attr.for="{{ 'guestTitle' + i }}" class="form-label">Guest title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="{{ 'guestTitle' + i }}"
+                  placeholder="Title"
+                  formControlName="guestTitle"
+                >
+              </div>
+              <div class="col-sm-9">
+                <label attr.for="{{ 'guestName' + i }}" class="form-label">Guest name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="{{ 'guestName' + i }}"
+                  placeholder="Name"
+                  formControlName="guestName"
+                >
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-5">
+              <button 
+                type="button"
+                class="btn btn-primary"
+                [disabled]="!guests.valid"
+                (click)="addGuest()"
+              >Add another guest</button>
+            </div>
+          </div>
+          
         </div>
     </div>
   </div>
@@ -244,6 +261,7 @@
             <input
               type="text"
               class="form-control"
+              id="POCServiceNumber"
               placeholder="30123456"
               formControlName="POCServiceNumber"
             >
@@ -254,6 +272,7 @@
             <label for="POCRank" class="form-label">Rank</label>
             <select
               class="form-select"
+              id="POCRank"
               formControlName="POCRank"
             >
               <option selected>Rank</option>
@@ -268,6 +287,7 @@
             <label for="POCFirstName" class="form-label">First name</label>
             <input
               type="text"
+              id="POCFirstName"
               class="form-control"
               placeholder="First name"
               formControlName="POCFirstName"
@@ -278,6 +298,7 @@
             <input
               type="text"
               class="form-control"
+              id="POCLastName"
               placeholder="Last name"
               formControlName="POCLastName"
             >
@@ -288,6 +309,7 @@
           <input
             type="text"
             class="form-control"
+            id="POCUnit"
             placeholder="Unit"
             formControlName="POCUnit"
           >
@@ -298,6 +320,7 @@
             <input
               type="tel"
               class="form-control"
+              id="POCContactNumber"
               placeholder="00000000000"
               formControlName="POCContactNumber"
             >
@@ -307,6 +330,7 @@
             <input
               type="email"
               class="form-control"
+              id="POCEmail"
               placeholder="name@email.com"
               formControlName="POCEmail"
             >
@@ -356,8 +380,3 @@
   </button>
 
 </form>
-
-<br>Dirty: {{ roomBookingForm.dirty }}
-<br>Touched: {{ roomBookingForm.touched }}
-<br>Valid: {{ roomBookingForm.valid }}
-<br>Value: {{ roomBookingForm.value | json }}
