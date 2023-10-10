@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collectionData } from '@angular/fire/firestore';
+import { Firestore, collectionData, query, where } from '@angular/fire/firestore';
 import { addDoc, collection, deleteDoc, doc, updateDoc } from 'firebase/firestore';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,15 @@ import { addDoc, collection, deleteDoc, doc, updateDoc } from 'firebase/firestor
 export class FsDataService {
 
   constructor(private fs: Firestore) { }
+
+  getData(data: any, db: string) {
+    const collectionInstance = collection(this.fs, db);
+    collectionData(collectionInstance, { idField: 'id' })
+    .subscribe(val => {
+      console.log(val);
+    })
+    data = collectionData(collectionInstance, { idField: 'id' });
+  }
 
   addData(f: any, db: string) {
     const collectionInstance = collection(this.fs, db);
@@ -17,15 +27,6 @@ export class FsDataService {
     .catch((err) => {
       console.log(err);
     })
-  }
-
-  getData(data: any, db: string) {
-    const collectionInstance = collection(this.fs, db);
-    collectionData(collectionInstance, { idField: 'id' })
-    .subscribe(val => {
-      console.log(val);
-    })
-    data = collectionData(collectionInstance, { idField: 'id' });
   }
 
   updateData(id: string, db: string) {

@@ -1,25 +1,24 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { environment } from '../environments/environment';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppComponent } from './app.component';
-
 import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
+
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BookRoomComponent } from './bookings/book-room/book-room.component';
 import { BookMealComponent } from './bookings/book-meal/book-meal.component';
 import { MyBookingsComponent } from './bookings/my-bookings/my-bookings.component';
-import { SignInComponent } from './users/sign-in/sign-in.component';
-import { RegisterComponent } from './users/register/register.component';
-import { ProfileComponent } from './users/profile/profile.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { EditUserComponent } from './users/edit-user/edit-user.component';
+import { UserFormComponent } from './users/user-form/user-form.component';
+import { UsersListComponent } from './users/users-list/users-list.component';
+import { AddUserComponent } from './users/add-user/add-user.component';
 
 @NgModule({
   declarations: [
@@ -30,17 +29,17 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BookRoomComponent,
     BookMealComponent,
     MyBookingsComponent,
-    SignInComponent,
-    RegisterComponent,
-    ProfileComponent,
+    EditUserComponent,
+    UserFormComponent,
+    UsersListComponent,
+    AddUserComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     ReactiveFormsModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore()),
-    FontAwesomeModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

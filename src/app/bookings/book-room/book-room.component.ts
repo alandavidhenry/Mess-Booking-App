@@ -35,11 +35,19 @@ export class BookRoomComponent implements OnInit {
               private fsDataService: FsDataService,
               private fs: Firestore,
               private fb: FormBuilder) {
-    this.getData();
+    // this.getUsers();
+    this.getData(this.data);
   }
 
   ngOnInit(): void {
     this.roomBookingForm = this.fb.group({
+      serviceNumber: {value:'', disabled: true},
+      rank: {value:'', disabled: true},
+      firstName: {value:'', disabled: true},
+      lastName: {value:'', disabled: true},
+      unit: {value:'', disabled: true},
+      contactNumber: {value:'', disabled: true},
+      email: {value:'', disabled: true},
       reasonForStay: ['', [Validators.required, Validators.minLength(3)]],
       arrivalDate: ['', [Validators.required, Validators.pattern(this.dateRegEx)]],
       arrivalTime: ['', [Validators.required, Validators.pattern(this.timeRegEx)]],
@@ -94,28 +102,43 @@ export class BookRoomComponent implements OnInit {
       guestNameControl?.updateValueAndValidity();
   }
 
-  // Get data from Firestore Database
-  getData() {
-    const collectionInstance = collection(this.fs, 'rooms');
-    collectionData(collectionInstance, { idField: 'id' })
-    .subscribe(val => {
-      console.log(val);
-    })
-    this.data = collectionData(collectionInstance, { idField: 'id' });
+  // Get user data from Firestore Database
+  // getUsers() {
+  //   const collectionInstance = collection(this.fs, 'users');
+  //   collectionData(collectionInstance, { idField: 'id' })
+  //   .subscribe(val => {
+  //     console.log(val);
+  //   })
+  //   this.data = collectionData(collectionInstance, { idField: 'id' });
+  // }
+
+  // Get rooms data from Firestore Database
+  // getData() {
+  //   const collectionInstance = collection(this.fs, 'rooms');
+  //   collectionData(collectionInstance, { idField: 'id' })
+  //   .subscribe(val => {
+  //     console.log(val);
+  //   })
+  //   this.data = collectionData(collectionInstance, { idField: 'id' });
+  // }
+
+  // Get data
+  getData(data: any) {
+    this.fsDataService.getData(data, this.db);
   }
 
-  // Add booking using service
+  // Add room booking using service
   addBooking(roomBookingForm: any) {
     this.fsDataService.addData(roomBookingForm, this.db);
     this.router.navigate(['/bookings', 'my-bookings']);
   }
 
-  // Update booking using service
+  // Update room booking using service
   updateBooking(roomBookingForm: any) {
     this.fsDataService.updateData(roomBookingForm, this.db);
   }
 
-  // Delete booking using service
+  // Delete room booking using service
   deleteBooking(roomBookingForm: any) {
     this.fsDataService.deleteData(roomBookingForm, this.db);
   }

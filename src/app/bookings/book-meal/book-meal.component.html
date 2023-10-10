@@ -9,19 +9,16 @@
 
   <div class="card mb-4">
     <div class="card-body">
+      <div class="row">
 
-      <div class="col-sm-6 mb-3">
-        <label class="form-label" for="mealDate">Meal date</label>
-        <input
-          type="text"
-          class="form-control"
-          id="mealDate"
-          placeholder="DD/MM/YYYY (required)"
-          formControlName="mealDate"
-          [ngClass]="{'is-invalid': mealBookingForm.get('mealDate')?.touched && !mealBookingForm.get('mealDate')?.valid}"
-        >
-        <div class="invalid-feedback">
-          Please enter a valid meal date in the format DD/MM/YYYY.
+        <div class="col-sm-6 mb-3">
+          <label class="form-label" for="mealDate">Meal date</label>
+          <input
+            type="date"
+            class="form-control"
+            id="mealDate"
+            formControlName="mealDate"
+          >
         </div>
       </div>
 

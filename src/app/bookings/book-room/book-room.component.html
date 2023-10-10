@@ -7,6 +7,92 @@
   [formGroup]="roomBookingForm"
   >
 
+   <!-- Your details -->
+   <div class="card mb-4">
+    <div class="card-body">
+      <h3>Your details</h3>
+      
+      <div class="yourDetails">
+        <div class="mb-3">
+          <div class="col-md-2">
+            <label for="serviceNumber" class="form-label">Service number</label>
+            <input
+              type="text"
+              class="form-control"
+              id="serviceNumber"
+              formControlName="serviceNumber"
+            >
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-sm-2">
+            <label for="rank" class="form-label">Rank</label>
+            <select
+              class="form-select"
+              id="rank"
+              formControlName="rank"
+            >
+              <option selected>Rank</option>
+              <option value="LSgt">LSgt</option>
+              <option value="Sgt">Sgt</option>
+              <option value="CSgt">CSgt</option>
+              <option value="WO2">WO2</option>
+              <option value="WO1">WO1</option>
+            </select>
+          </div>
+          <div class="col-sm-5">
+            <label for="firstName" class="form-label">First name</label>
+            <input
+              type="text"
+              id="firstName"
+              class="form-control"
+              formControlName="firstName"
+            >
+          </div>
+          <div class="col-sm-5">
+            <label for="lastName" class="form-label">Last name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="lastName"
+              formControlName="lastName"
+            >
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="unit" class="form-label">Unit</label>
+          <input
+            type="text"
+            class="form-control"
+            id="unit"
+            formControlName="unit"
+          >
+        </div>
+        <div class="row mb-3">
+          <div class="col-sm-4">
+            <label for="contactNumber" class="form-label">Contact number</label>
+            <input
+              type="tel"
+              class="form-control"
+              id="contactNumber"
+              formControlName="contactNumber"
+            >
+          </div>
+          <div class="col-sm-8">
+            <label for="email" class="form-label">Email address</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              formControlName="email"
+            >
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
   <!-- Details about your stay -->
   <div class="card mb-4">
       <div class="card-body">
@@ -19,7 +105,7 @@
             id="reasonForStay"
             placeholder="Reason for stay (required)"
             formControlName="reasonForStay"
-            [ngClass]="{'is-invalid': (roomBookingForm.get('reasonForStay')?.touched || roomBookingForm.get('reasonForStay')?.dirty) && !roomBookingForm.get('reasonForStay')?.valid}"
+            [ngClass]="{'is-invalid': (roomBookingForm.get('reasonForStay')?.touched || roomBookingForm.get('reasonForStay')?.dirty) && !roomBookingForm.get('serviceNumber')?.valid}"
           >
           <div class="invalid-feedback">
             <span *ngIf="roomBookingForm.get('reasonForStay')?.errors?.['required']">Please enter a reason for staying.</span>
@@ -30,10 +116,9 @@
           <div class="col-sm-6">
             <label class="form-label" for="arrivalDate">Arrival date</label>
             <input
-              type="text"
+              type="date"
               class="form-control"
               id="arrivalDate"
-              placeholder="DD/MM/YYYY (required)"
               formControlName="arrivalDate"
               [ngClass]="{'is-invalid': roomBookingForm.get('arrivalDate')?.touched && !roomBookingForm.get('arrivalDate')?.valid}"
             >
@@ -44,10 +129,9 @@
           <div class="col-sm-6">
             <label class="form-label" for="arrivalTime">Arrival time</label>
             <input 
-              type="text"
+              type="time"
               class="form-control"
               id="arrivalTime"
-              placeholder="00:00 (required)"
               formControlName="arrivalTime"
               [ngClass]="{'is-invalid': roomBookingForm.get('arrivalTime')?.touched && !roomBookingForm.get('arrivalTime')?.valid}"
             >
@@ -60,10 +144,9 @@
           <div class="col-sm-6">
             <label class="form-label" for="departureDate">Departure date</label>
             <input
-              type="text"
+              type="date"
               class="form-control"
               id="departureDate"
-              placeholder="DD/MM/YYYY (required)"
               formControlName="departureDate"
               [ngClass]="{'is-invalid': roomBookingForm.get('departureDate')?.touched && !roomBookingForm.get('departureDate')?.valid}"
             >
@@ -74,10 +157,9 @@
           <div class="col-sm-6">
             <label class="form-label" for="departureTime">Departure time</label>
             <input 
-              type="text"
+              type="time"
               class="form-control"
               id="departureTime"
-              placeholder="00:00 (required)"
               formControlName="departureTime"
               [ngClass]="{'is-invalid': roomBookingForm.get('departureTime')?.touched && !roomBookingForm.get('departureTime')?.valid}"
             >
@@ -256,8 +338,8 @@
       <!-- Hidden if "Same as above" selected -->
       <div class="POCDetails" *ngIf="roomBookingForm.get('POCDetails')?.value === 'Different'">
         <div class="mb-3">
-          <label for="POCServiceNumber" class="form-label">Service number</label>
           <div class="col-md-2">
+            <label for="POCServiceNumber" class="form-label">Service number</label>
             <input
               type="text"
               class="form-control"

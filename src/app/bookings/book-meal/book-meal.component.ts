@@ -34,7 +34,8 @@ export class BookMealComponent implements OnInit {
 
   ngOnInit(): void {
     this.mealBookingForm = this.fb.group({
-      mealDate: ['', [Validators.required, Validators.pattern(this.dateRegEx)]],
+      mealDate: '',
+      // mealDate: ['', [Validators.required, Validators.pattern(this.dateRegEx)]],
       mealType: '',
       dietaryRequirements: ''
     });
