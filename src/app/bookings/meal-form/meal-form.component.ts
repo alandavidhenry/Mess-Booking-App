@@ -32,8 +32,8 @@ export class MealFormComponent implements OnInit {
     this.initialState.subscribe(meal => {
       this.mealForm = this.fb.group({
         mealDate: [ meal.mealDate, [Validators.required]],
-        mealType: meal.mealType,
-        dietaryRequirements: meal.dietaryRequirements
+        mealType: [ meal.mealType ],
+        dietaryRequirements: [ meal.dietaryRequirements ]
       });
     });
   

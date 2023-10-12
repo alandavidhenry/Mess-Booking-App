@@ -1,5 +1,5 @@
 export class Meal {
-  key?: string | null;
+  _id?: string;
   mealDate?: Date;
   mealType?: string[];
   dietaryRequirements?: string;

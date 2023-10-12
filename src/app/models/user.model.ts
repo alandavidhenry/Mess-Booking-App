@@ -1,5 +1,5 @@
 export class User {
-  key?: string | null;
+  _id?: string;
   serviceNumber?: string;
   rank?: string;
   firstName?: string;
@@ -8,5 +8,5 @@ export class User {
   contactNumber?: string;
   email?: string;
   password?: string;
-  _id?: string;
+  
 }

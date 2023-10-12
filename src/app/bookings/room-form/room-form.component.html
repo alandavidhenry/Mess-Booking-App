@@ -1,1 +1,214 @@
-<p>room-form works!</p>
+<form class="room-form" autocomplete="off" [formGroup]="roomForm" (ngSubmit)="submitForm()">
+
+  <!-- Details about your stay -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <h3>Details about your stay</h3>
+
+      <!-- Reason for stay -->
+      <div class="form-floating mb-3">
+        <input class="form-control" type="text" id="reasonForStay" formControlName="reasonForStay" required [ngClass]="{'is-invalid': reasonForStay.invalid && (reasonForStay.dirty || reasonForStay.touched)}">
+        <label for="reasonForStay">Reason for stay</label>
+        <div *ngIf="reasonForStay.invalid && (reasonForStay.dirty || reasonForStay.touched)" class="invalid-feedback">
+          <span *ngIf="reasonForStay.errors?.['required']">
+              Reason for stay is required.
+          </span>
+        </div>
+      </div>
+
+      <!-- Arrival date -->
+      <div class="form-floating mb-3">
+        <input class="form-control" type="date" id="arrivalDate" formControlName="arrivalDate" required [ngClass]="{'is-invalid': arrivalDate.invalid && (arrivalDate.dirty || arrivalDate.touched)}">
+        <label for="arrivalDate">Arrival date</label>
+        <div *ngIf="arrivalDate.invalid && (arrivalDate.dirty || arrivalDate.touched)" class="invalid-feedback">
+          <span *ngIf="arrivalDate.errors?.['required']">
+              Arrival date is required.
+          </span>
+        </div>
+      </div>
+      
+      <!-- Arrival time -->
+      <div class="form-floating mb-3">
+        <input class="form-control" type="time" id="arrivalTime" formControlName="arrivalTime" required [ngClass]="{'is-invalid': arrivalTime.invalid && (arrivalTime.dirty || arrivalTime.touched)}">
+        <label for="arrivalTime">Arrival time</label>
+        <div *ngIf="arrivalTime.invalid && (arrivalTime.dirty || arrivalTime.touched)" class="invalid-feedback">
+          <span *ngIf="arrivalTime.errors?.['required']">
+              Arrival time is required.
+          </span>
+        </div>
+      </div>
+
+      <!-- Departure date -->
+      <div class="form-floating mb-3">
+        <input class="form-control" type="date" id="departureDate" formControlName="departureDate" required [ngClass]="{'is-invalid': departureDate.invalid && (departureDate.dirty || departureDate.touched)}">
+        <label for="departureDate">Departure date</label>
+        <div *ngIf="departureDate.invalid && (departureDate.dirty || departureDate.touched)" class="invalid-feedback">
+          <span *ngIf="departureDate.errors?.['required']">
+              Departure date is required.
+          </span>
+        </div>
+      </div>
+
+      <!-- Departure time -->
+      <div class="form-floating mb-3">
+        <input class="form-control" type="time" id="departureTime" formControlName="departureTime" required [ngClass]="{'is-invalid': departureTime.invalid && (departureTime.dirty || departureTime.touched)}">
+        <label for="departureTime">Departure time</label>
+        <div *ngIf="departureTime.invalid && (departureTime.dirty || departureTime.touched)" class="invalid-feedback">
+          <span *ngIf="departureTime.errors?.['required']">
+              Departure time is required.
+          </span>
+        </div>
+      </div>
+
+      <!-- Bedding required? -->
+      <div class="mb-3">
+        <p>Will you require bedding?</p>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" id="beddingRequiredYes" [value]="'Yes'" formControlName="beddingRequired" checked>
+            <label class="form-check-label" for="beddingRequiredYes">Yes</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" id="beddingRequiredNo" [value]="'No'" formControlName="beddingRequired" checked>
+            <label class="form-check-label" for="beddingRequiredNo">No</label>
+        </div>
+      </div>
+  </div>
+</div>
+
+<!-- Guests -->
+<div class="card mb-4">
+  <div class="card-body">
+    <h3>Guests</h3>
+
+    <!-- Bringing guests radio -->
+    <div class="mb-3">
+      <p>Will you be bringing guests?</p>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" id="noGuests" [value]="'No'" formControlName="bringingGuests" checked>
+        <label class="form-check-label" for="noGuests">No</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" id="yesGuests" [value]="'Yes'" formControlName="bringingGuests">
+        <label class="form-check-label" for="yesGuests">Yes</label>
+      </div>
+    </div>
+
+    <!-- Hidden if no guests selected -->
+    <div class="guests" *ngIf="roomForm.get('bringingGuests')?.value === 'Yes'">
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        Members are reminded that they must host their guest at all times and there is a £10.00 cleaning and maintenance bill per stay.
+        <button class="btn-close" type="button" data-bs-dismiss="alert"></button>
+      </div>
+      <div class="mb-3">
+        <p>What kind of room will you require?</p>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" id="singleBunk" [value]="'Single Bunk'" formControlName="roomType" checked>
+          <label class="form-check-label" for="singleBunk">Single bunk</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" id="familyRoom" [value]="'Family Room'" formControlName="roomType">
+          <label class="form-check-label" for="familyRoom">Family room</label>
+        </div>
+      </div>
+      <div formArrayName="guests" *ngFor="let guest of guests.controls; let i=index">
+        <div class="form-floating mb-3" [formGroupName]="i">
+          <input class="form-control" type="text" id="{{ 'guestTitle' + i }}" formControlName="guestTitle">
+          <label attr.for="{{ 'guestTitle' + i }}" class="form-label">Guest title</label>
+        </div>
+        <div class="form-floating mb-3" [formGroupName]="i">
+          <input class="form-control" type="text" id="{{ 'guestName' + i }}" formControlName="guestName">
+          <label attr.for="{{ 'guestName' + i }}" class="form-label">Guest name</label>
+        </div>
+      </div>
+      <!-- Add another guest button -->
+      <div class="row">
+        <div class="col-sm-5">
+          <button class="btn btn-primary" type="button" [disabled]="!guests.valid" (click)="addGuest()">Add another guest</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Point of contact details -->
+<div class="card mb-4">
+  <div class="card-body">
+    <h3>Point of contact details</h3>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" id="samePOCDetails" [value]="'Same'" formControlName="POCDetails" checked>
+      <label class="form-check-label" for="samePOCDetails">Same as above</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" id="differentPOCDetails" [value]="'Different'" formControlName="POCDetails" >
+      <label class="form-check-label" for="differentPOCDetails">Different to above</label>
+    </div>
+
+    <!-- Hidden if "Same as above" selected -->
+    <div class="POCDetails" *ngIf="roomForm.get('POCDetails')?.value === 'Different'">
+      <div class="form-floating mb-3">
+          <input class="form-control" type="text" id="POCServiceNumber" formControlName="POCServiceNumber">
+          <label for="POCServiceNumber" class="form-label">Service number</label>
+      </div>
+      <div class="form-floating mb-3">
+        <select class="form-select" id="POCRank" formControlName="POCRank">
+          <option selected>Rank</option>
+          <option value="LSgt">LSgt</option>
+          <option value="Sgt">Sgt</option>
+          <option value="CSgt">CSgt</option>
+          <option value="WO2">WO2</option>
+          <option value="WO1">WO1</option>
+        </select>
+        <label for="POCRank" class="form-label">Rank</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input id="POCFirstName" type="text" class="form-control" formControlName="POCFirstName">
+        <label for="POCFirstName" class="form-label">First name</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input class="form-control" type="text" id="POCLastName" formControlName="POCLastName">
+        <label for="POCLastName" class="form-label">Last name</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input class="form-control" type="text" id="POCUnit" formControlName="POCUnit" >
+        <label for="POCUnit" class="form-label">Unit</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input class="form-control" type="tel" id="POCContactNumber" formControlName="POCContactNumber">
+        <label for="POCContactNumber" class="form-label">Contact number</label>  
+      </div>
+        <div class="form-floating mb-3">
+        <input class="form-control" type="email" id="POCEmail" formControlName="POCEmail">
+        <label for="POCEmail" class="form-label">Email address</label>
+      </div>
+      </div>
+    </div>
+</div>
+
+  <!-- Rules -->
+  <div class="alert alert-warning" *ngIf="!roomForm.get('checkRules')?.value">
+    <ol>
+      <li>Please note, that due to the high turnover in accommodation, rooms will not be available until 
+        15:00 hrs on day of arrival, and must be vacated by 10:00 hrs on day of departure. If keys are 
+        not returned on time, the member who has booked the accommodation will be billed for a new lock. 
+        Damages will follow the same process. NO EXCEPTIONS.</li>
+      <li>One booking request per room. NO EXCEPTIONS. Requests will not be actioned that ask for multiple rooms.</li>
+      <li>Requests for accommodation can ONLY be made by email.</li>
+      <li>Confirmation is by e.mail only, within 2-3 working days.</li>
+      <li>If you book a room and do not collect your key without good reason, you will be declined from booking accommodation in the future.</li>
+      <li>Please ensure that you have read the <a class="link-dark" data-bs-toggle="modal" href="#rulesModal">Sgt's mess rules</a> before arrival 
+          and more importantly, your guests do.</li>
+      <li>All bookings will be confirmed via return email within 2-3 working days.</li>
+    </ol>	
+  </div>
+
+  <!-- Rules checkbox -->
+  <div class="form-check mb-3">
+    <input type="checkbox" class="form-check-input" id="checkRules" [value]="false" formControlName="checkRules" required>
+    <label class="form-check-label" for="checkRules">I have read and agree to the rules.</label>
+  </div>
+
+  <!-- Submit button -->
+  <button class="btn btn-primary" type="submit" [disabled]="roomForm.invalid">Add</button>
+
+</form>

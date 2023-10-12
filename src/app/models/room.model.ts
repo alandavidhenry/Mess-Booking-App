@@ -1,0 +1,43 @@
+export class Room {
+  _id?: string;
+  reasonForStay?: string;
+  arrivalDate?: Date;
+  arrivalTime?: Date;
+  departureDate?: Date;
+  departureTime?: Date;
+  beddingRequired?: string;
+  bringingGuests?: string;
+  guestTitle?: string;
+  guestName?: string;
+  roomType?: string;
+  POCDetails?: string;
+  POCServiceNumber?: string;
+  POCRank?: string;
+  POCFirstName?: string;
+  POCLastName?: string;
+  POCUnit?: string;
+  POCContactNumber?: string;
+  POCEmail?: string;
+  checkRules?: boolean;
+
+  // _id?: string;
+  // reasonForStay?: string;
+  // arrivalDate?: Date;
+  // arrivalTime?: Date;
+  // departureDate?: Date;
+  // departureTime?: Date;
+  // beddingRequired: string = 'Yes';
+  // bringingGuests: string = 'No';
+  // guestTitle?: string;
+  // guestName?: string;
+  // roomType: string = 'Single Bunk';
+  // POCDetails?: string = 'Same';
+  // POCServiceNumber?: string;
+  // POCRank?: string;
+  // POCFirstName?: string;
+  // POCLastName?: string;
+  // POCUnit?: string;
+  // POCContactNumber?: string;
+  // POCEmail?: string;
+  // checkRules: boolean = false;
+}

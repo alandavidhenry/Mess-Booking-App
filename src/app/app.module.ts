@@ -11,18 +11,19 @@ import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { BookingsListComponent } from './bookings/bookings-list/bookings-list.component';
 import { BookRoomComponent } from './bookings/book-room/book-room.component';
-import { BookMealComponent } from './bookings/book-meal/book-meal.component';
-import { MyBookingsComponent } from './bookings/my-bookings/my-bookings.component';
-
-import { EditUserComponent } from './users/edit-user/edit-user.component';
-import { UserFormComponent } from './users/user-form/user-form.component';
-import { UsersListComponent } from './users/users-list/users-list.component';
-import { AddUserComponent } from './users/add-user/add-user.component';
-import { EditMealComponent } from './bookings/edit-meal/edit-meal.component';
 import { EditRoomComponent } from './bookings/edit-room/edit-room.component';
 import { RoomFormComponent } from './bookings/room-form/room-form.component';
+import { BookMealComponent } from './bookings/book-meal/book-meal.component';
+import { EditMealComponent } from './bookings/edit-meal/edit-meal.component';
 import { MealFormComponent } from './bookings/meal-form/meal-form.component';
+import { UsersListComponent } from './users/users-list/users-list.component';
+import { AddUserComponent } from './users/add-user/add-user.component';
+import { EditUserComponent } from './users/edit-user/edit-user.component';
+import { UserFormComponent } from './users/user-form/user-form.component';
+import { ProfileComponent } from './users/profile/profile.component';
+import { SignInComponent } from './users/sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
@@ -30,17 +31,19 @@ import { MealFormComponent } from './bookings/meal-form/meal-form.component';
     HeaderComponent,
     FooterComponent,
     DashboardComponent,
+    BookingsListComponent,
     BookRoomComponent,
-    BookMealComponent,
-    MyBookingsComponent,
-    EditUserComponent,
-    UserFormComponent,
-    UsersListComponent,
-    AddUserComponent,
-    EditMealComponent,
     EditRoomComponent,
     RoomFormComponent,
+    BookMealComponent,
+    EditMealComponent,
     MealFormComponent,
+    UsersListComponent,
+    AddUserComponent,
+    EditUserComponent,
+    UserFormComponent,
+    ProfileComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
