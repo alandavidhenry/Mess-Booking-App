@@ -19,6 +19,10 @@ import { EditUserComponent } from './users/edit-user/edit-user.component';
 import { UserFormComponent } from './users/user-form/user-form.component';
 import { UsersListComponent } from './users/users-list/users-list.component';
 import { AddUserComponent } from './users/add-user/add-user.component';
+import { EditMealComponent } from './bookings/edit-meal/edit-meal.component';
+import { EditRoomComponent } from './bookings/edit-room/edit-room.component';
+import { RoomFormComponent } from './bookings/room-form/room-form.component';
+import { MealFormComponent } from './bookings/meal-form/meal-form.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +37,10 @@ import { AddUserComponent } from './users/add-user/add-user.component';
     UserFormComponent,
     UsersListComponent,
     AddUserComponent,
+    EditMealComponent,
+    EditRoomComponent,
+    RoomFormComponent,
+    MealFormComponent,
   ],
   imports: [
     BrowserModule,

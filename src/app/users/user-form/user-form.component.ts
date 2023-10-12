@@ -33,7 +33,8 @@ export class UserFormComponent implements OnInit {
   ngOnInit() {
     this.initialState.subscribe(user => {
       this.userForm = this.fb.group({
-        serviceNumber: [ user.serviceNumber, [Validators.required, Validators.minLength(8)] ],
+        // serviceNumber: [ user.serviceNumber, [Validators.required, Validators.minLength(8), Validators.maxLength(8), (Validators.pattern("[2-3]\d+") || Validators.pattern("W[1-9]\d+"))]],
+        serviceNumber: [ user.serviceNumber, [Validators.required, Validators.minLength(8), Validators.maxLength(8)]],
         rank: [ user.rank, [ Validators.required ] ],
         firstName: [ user.firstName, [Validators.required] ],
         lastName: [ user.lastName, [Validators.required] ],

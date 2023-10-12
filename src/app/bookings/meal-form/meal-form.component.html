@@ -1,0 +1,62 @@
+<form class="meal-form" autocomplete="off" [formGroup]="mealForm" (ngSubmit)="submitForm()">
+
+    <!-- Meal date -->
+    <div class="form-floating mb-3">
+      <input class="form-control" type="date" id="mealDate" formControlName="mealDate" required [ngClass]="{'is-invalid': mealDate.invalid && (mealDate.dirty || mealDate.touched)}">
+      <label for="mealDate">Meal date</label>
+      <div *ngIf="mealDate.invalid && (mealDate.dirty || mealDate.touched)" class="invalid-feedback">
+        <span *ngIf="mealDate.errors?.['required']">
+          Meal date is required.
+        </span>
+      </div>
+    </div>
+
+    <!-- Meal type -->
+    <p>Choose at least one meal:</p>
+    <div class="form-floating mb-3">
+      <div class="form-check">
+        <input class="form-check-input"
+                type="checkbox"
+                value="Breakfast"
+                id="breakfast"
+                (change)="onCheckboxChange($event, 'Breakfast')"
+                formControlName="mealType"
+        >
+        <label class="form-check-label" for="breakfast">
+          Breakfast
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input"
+                type="checkbox"
+                value="Lunch"
+                id="lunch"
+                (change)="onCheckboxChange($event, 'Lunch')"
+                formControlName="mealType"
+        >
+        <label class="form-check-label" for="lunch">
+          Lunch
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input"
+                type="checkbox"
+                value="Dinner"
+                id="dinner"
+                (change)="onCheckboxChange($event, 'Dinner')"
+                formControlName="mealType"
+        >
+        <label class="form-check-label" for="dinner">
+          Dinner
+        </label>
+      </div>
+    </div>
+
+    <!-- Dietary requirements -->
+    <div class="form-floating mb-3">
+      <input class="form-control" type="text" id="dietaryRequirements" formControlName="dietaryRequirements" placeholder="Dietary requirements">
+      <label for="dietaryRequirements">Dietary requirements</label>
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="mealForm.invalid">Add</button>
+  </form>

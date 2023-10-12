@@ -19,9 +19,11 @@ export class UsersListComponent implements OnInit {
   }
   
   deleteUser(id: string): void {
-    this.usersService.deleteUser(id).subscribe({
-      next: () => this.fetchUsers()
-    });
+    if (confirm("Are you sure you want to delete this user?")) {
+      this.usersService.deleteUser(id).subscribe({
+        next: () => this.fetchUsers()
+      });
+    } else {}
   }
   
   private fetchUsers(): void {
